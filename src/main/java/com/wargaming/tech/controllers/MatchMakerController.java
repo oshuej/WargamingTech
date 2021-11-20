@@ -1,6 +1,8 @@
 package com.wargaming.tech.controllers;
 
 import com.wargaming.tech.dto.UserDto;
+import com.wargaming.tech.services.MatchMakerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +19,16 @@ import javax.validation.Valid;
 )
 public class MatchMakerController {
 
+	private final MatchMakerService matchMakerService;
+
+	@Autowired
+	public MatchMakerController(MatchMakerService matchMakerService) {
+		this.matchMakerService = matchMakerService;
+	}
+
 	@PostMapping(value = "/users")
 	public ResponseEntity<Object> joinPool(@RequestBody @Valid UserDto user) {
-		// TODO body
+		matchMakerService.joinPool(user);
 		return ResponseEntity.ok(new Object());
 	}
 }
