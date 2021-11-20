@@ -1,9 +1,11 @@
 package com.wargaming.tech.dto;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
 public class UserDto {
 	@NotNull
+	@NotBlank
 	private String name;
 	@NotNull
 	private double skill;
